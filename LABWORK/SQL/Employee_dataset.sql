@@ -191,3 +191,85 @@ from Employee
 group by department 
 order by avg_salary desc 
 limit 1 ;
+
+Create table students (S_id int not null ,name varchar(60) , age int);
+insert into student values ( 1, "Amit", 26) ;
+insert into stuudent(name, age) values ("Ankita", 26);
+
+insert into student values(null, "tom", 24)
+ 
+create table student1 (S_id int not null unique, name varchar(50), age int);
+insert into student1 values (1, "AB", 23)
+insert into values 
+
+create table student2( s_id int not null check(s_id > 0 ), Name varchar(60) not null, age int, city varchar(20) default 'kolkata');
+insert into student3 values;
+
+create table customer_details (c_id int primary key, 
+customer_name varchar(60) not null,
+address varchar(60));
+
+insert into customer_details values ( 101, "Adam", "Noida"),
+(102, "Alex", "Delhi"),
+(103, "Stuart","Rohtak")
+;
+-- removing 1 values from customer table 
+create table Order_details (order_id int primary key, 
+order_name varchar(60) not null,
+c_id int, foreign key(c_id) references customer_details(c_id));
+
+insert into order_details values ( 10, "o1", 101),
+(11, "o2", 102),
+(12, "o3",103)
+;
+
+Select * from order_details
+
+-- inserting extra values in order table 
+insert into order_details values ( 10, "o1", 101),
+(11, "o2", 102),
+(12, "o3",103)
+;
+-- subquery retrive salary > salary of emp_id 104
+Select * from employee 
+where salary > (select salary from employee where emp_id = 104);
+
+-- fetch the data of the employee whose salary is maximum
+select * from employee 
+where salary = (select max(salary) from employee);
+
+-- find the employee whose salary is greater than avg salary 
+Select * from employee 
+where salary > (select avg(salary) from employee);
+
+-- find the records of the employee whose salary is min 
+ Select * from employee 
+ where salary = (select min(salary) from employee);
+ 
+-- find the records of the emp earning less than emp_id 101
+Select * from employee 
+where salary < (select salary from employee where emp_id = 103);
+
+-- find the employee of same salary as emp_id 104 
+Select * from employee 
+Where salary = (select Salary from employee where emp_id = 104 );
+
+-- find the employees in departments having someone from kolkata 
+
+Select * from employee 
+where department in (
+Select department from employee 
+where city = "Kolkata" 
+); 
+
+
+-- employees with 2nd highest salary 
+Select * from employee 
+where salary < (select max(salary) from employee)
+order by salary desc
+limit 1;
+
+select max(salary) from employee ;
+select * from employee
+order by salary desc;
+
