@@ -273,3 +273,71 @@ select max(salary) from employee ;
 select * from employee
 order by salary desc;
 
+create table stu1(sid int, sname varchar(20), mobile varchar(15));
+create table stu2(stu_id int, course varchar(30), fee double);
+insert into stu1 values (1,'AB', "1234567808"),
+                        (2,'CD', "3456076543"),
+                        (3,'DE', "5667865367"),
+                        (4,'EF', "78948654377"),
+                        (5,'FG', "45328654478");
+insert into stu2 values (4, 'c', 100),
+                        (5, 'Python', 200),
+                        (6, 'java', 300),
+                        (7, 'c++', 400),
+                        (8, 'SQL', 500);
+Select * from stu1;
+Select * from stu2;
+Select stu1.sid, stu1.sname, stu2.course 
+from stu1 
+inner join stu2 on 
+stu1.sid = stu2.stu_id ;
+
+
+Select stu1.sid, stu1.sname, stu2.course 
+from stu1 
+left join stu2 on 
+stu1.sid = stu2.stu_id ;
+
+
+Select stu1.sid, stu1.sname, stu2.course 
+from stu1 
+Right join stu2 on 
+stu1.sid = stu2.stu_id ;
+
+Create table Employees(
+        emp_id int Primary Key, 
+        e_name varchar(50),
+        manager_id int);
+
+insert into employees(emp_id, e_name, manager_id) values
+(1,'A', Null),
+(2,'B', 1),
+(3,'C', 1),
+(4,'D', 2);
+
+-- Self join 
+SELECT e.e_name As Employee, m.e_name As manager
+from Employees e 
+left join Employees m 
+on e.manager_id = m.emp_id;
+
+-- create view to retrive first name, last name and department from employee table 
+Create view emp_details as select first_name, last_name, department from employee;
+Select * from emp_details;
+
+-- create view to retrive hr depatment data
+create view hr_dept as select first_name, last_name, department from employee where department = 'HR' ;
+
+-- create view to retrive full name , emp_id from employee data 
+create view hrdept as select emp_id, concat(first_name, '', last_name) from employee  where department= 'hr';
+
+-- create view to retrive it department 
+Select * from dept_avg_salary;
+Select * from it;
+Select * from hr_dept;
+select * from hrdept;
+
+
+
+
+
